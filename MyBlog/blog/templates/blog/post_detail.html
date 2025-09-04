@@ -1,0 +1,19 @@
+<article>
+  <h1>{{ post.title }}</h1>
+  <p><strong>Автор:</strong> <a href="{% url 'posts_by_author' post.author.id %}">{{ post.author.name }}</a></p>
+  <p><strong>Опубліковано:</strong> {{ post.published_date|date:"Y-m-d H:i" }}</p>
+  <hr>
+  <div>{{ post.content }}</div>
+
+  <h2>Коментарі</h2>
+  <ul>
+    {% for c in post.comments.all %}
+      <li><strong>{{ c.author_name }}</strong> ({{ c.created_date|date:"Y-m-d H:i" }}): {{ c.text }}</li>
+    {% empty %}
+      <li>Поки немає коментарів.</li>
+    {% endfor %}
+  </ul>
+  <p><em>Додавати/редагувати коментарі можна через /admin.</em></p>
+
+  <p><a href="{% url 'post_list' %}">← Назад до списку</a></p>
+</article>

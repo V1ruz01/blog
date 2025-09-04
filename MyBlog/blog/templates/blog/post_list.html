@@ -1,0 +1,14 @@
+<h1>Список постів</h1>
+<ul>
+  {% for post in posts %}
+    <li>
+      <strong>{{ post.title }}</strong>
+      — {{ post.published_date|date:"Y-m-d H:i" }}
+      — {{ post.author.name }}
+      {% if post.published_recently %}<em>(нове)</em>{% endif %}
+    </li>
+  {% empty %}
+    <li>Немає постів</li>
+  {% endfor %}
+</ul>
+

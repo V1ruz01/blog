@@ -1,0 +1,14 @@
+<h1>Пости автора: {{ author.name }}</h1>
+<p>{{ author.bio }}</p>
+<ul>
+  {% for post in posts %}
+    <li>
+      <a href="{% url 'post_detail' post.pk %}"><strong>{{ post.title }}</strong></a>
+      — {{ post.published_date|date:"Y-m-d H:i" }}
+      {% if post.published_recently %}<em>(нове)</em>{% endif %}
+    </li>
+  {% empty %}
+    <li>У цього автора ще немає постів.</li>
+  {% endfor %}
+</ul>
+<p><a href="{% url 'post_list' %}">← До всіх постів</a></p>
